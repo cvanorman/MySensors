@@ -53,7 +53,7 @@
 #endif
 
 // Enable radio "feature" if one of the radio types was enabled
-#if defined(MY_RADIO_NRF24) || defined(MY_RADIO_RFM69) || defined(MY_RS485)
+#if defined(MY_RADIO_NRF24) || defined(MY_RADIO_RFM69) || defined(MY_RS485) || defined(MY_I2C)
 	#define MY_RADIO_FEATURE
 #endif
 
@@ -203,7 +203,7 @@
 
 
 // RADIO
-#if defined(MY_RADIO_NRF24) || defined(MY_RADIO_RFM69) || defined(MY_RS485)
+#if defined(MY_RADIO_NRF24) || defined(MY_RADIO_RFM69) || defined(MY_RS485) || defined(MY_I2C)
 	// SOFTSPI
 	#ifdef MY_SOFTSPI
 		#if defined(ARDUINO_ARCH_ESP8266)
@@ -228,6 +228,8 @@
 	#elif defined(MY_RADIO_RFM69)
 		#include "drivers/RFM69/RFM69.cpp"
 		#include "core/MyTransportRFM69.cpp"
+	#elif defined(MY_I2C)
+	    #include "core/MyTransportI2C.cpp"
 	#endif
 #endif
 
